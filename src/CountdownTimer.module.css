@@ -1,0 +1,11 @@
+#timer {
+  font-variant-numeric: initial;
+  font-size: 36px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-variant-numeric: proportional-nums;
+}
