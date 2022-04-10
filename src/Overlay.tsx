@@ -1,7 +1,7 @@
 import React from "react";
 import close from "./close.svg";
 import styles from "./Overlay.module.css";
-import Intructions from "./Instructions";
+import Instructions from "./Instructions";
 import Statistics from "./Statistics";
 import Settings from "./Settings";
 import game from "./gameLogic";
@@ -22,7 +22,7 @@ function Overlay(props: Props) {
     >
       <div className={styles.content}>
         <slot>
-          {props.type === "intructions" ? <Intructions /> : undefined}
+          {props.type === "instructions" ? <Instructions /> : undefined}
           {props.type === "statistics" ? <Statistics /> : undefined}
           {props.type === "settings" ? (
             <Settings

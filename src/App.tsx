@@ -8,6 +8,7 @@ import defaultState, { IGameState } from "./State";
 import game from "./gameLogic";
 import { toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IGameStatistics } from "./GameStats";
 
 toast.configure();
 
@@ -79,6 +80,8 @@ function App() {
       var a2 = document.querySelector("body");
       if (a2 !== null) a2.classList.add("colorblind");
     }
+    var stats: IGameStatistics = game.loadStats();
+    if (stats.gamesPlayed === 0) showOverlay("instructions");
   }, []);
 
   useEffect(() => {

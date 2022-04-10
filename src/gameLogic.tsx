@@ -1,7 +1,7 @@
 import allowedWords from "./allowedWords";
 import candidateWords from "./candidateWords";
 import defaultState, { IGameState } from "./State";
-import defaultStats from "./GameStats";
+import defaultStats, { IGameStatistics } from "./GameStats";
 
 const LOCAL_STORAGE_STATE_NAME = "azordle-state";
 const LOCAL_STORAGE_STATS_NAME = "azordle-statistics";
