@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import GameTile from "./GameTile";
 import styles from "./App.module.css";
+import { IAnimationState } from "./AnimationState";
 
 import { GameState } from "./App";
 
 interface Props {
   row: number;
-  shake: boolean;
-  animationStopped: CallableFunction;
+  animState: IAnimationState;
 }
 
 function GameRow(props: Props) {
@@ -34,16 +34,20 @@ function GameRow(props: Props) {
     <div
       key={props.row}
       className={styles.gridRow}
-      data-animation={props.shake ? "shake" : null}
-      onAnimationEnd={(e) => {
-        props.animationStopped();
-      }}
+      data-animation={
+        props.animState.type === "shake" && props.animState.row === props.row
+          ? "shake"
+          : null
+      }
     >
       {[0, 1, 2, 3, 4].map((i) => (
         <GameTile
           key={props.row * 10 + i}
           letter={getLetter(props.row, i)}
           evaluation={getEvaluation(props.row, i)}
+          row={props.row}
+          col={i}
+          animState={props.animState}
         ></GameTile>
       ))}
     </div>

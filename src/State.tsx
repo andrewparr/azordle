@@ -1,6 +1,6 @@
 export interface IGameState {
   boardState: Array<string>;
-  evaluations: Array<Array<string> | null>;
+  evaluations: Array<Array<string>>;
   rowIdx: number;
   solution: string;
   gameStatus: string;
@@ -11,7 +11,7 @@ export interface IGameState {
 
 const defaultState: IGameState = {
   boardState: ["", "", "", "", "", ""],
-  evaluations: [null, null, null, null, null, null],
+  evaluations: [[], [], [], [], [], []],
   rowIdx: 0,
   solution: "",
   gameStatus: "IN_PROGRESS",

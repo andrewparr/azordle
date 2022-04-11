@@ -248,6 +248,7 @@
   animation-name: FlipIn;
   animation-duration: 250ms;
   animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
 }
 
 @keyframes FlipIn {

@@ -1,17 +1,13 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
 import GameRow from "./GameRow";
 import styles from "./App.module.css";
-
-import { GameState } from "./App";
+import { IAnimationState } from "./AnimationState";
 
 interface Props {
-  shake: boolean;
-  animationStopped: CallableFunction;
+  animState: IAnimationState;
 }
 
 function Board(props: Props) {
-  const game = useContext(GameState);
-
   let height = window.innerHeight - (190 + 51 + 24);
   var w = Math.min(Math.floor(height * (5 / 6)), 350);
   var h = 6 * Math.floor(w / 5);
@@ -59,12 +55,7 @@ function Board(props: Props) {
     >
       <div className={styles.board} style={boardStyle}>
         {[0, 1, 2, 3, 4, 5].map((i) => (
-          <GameRow
-            shake={game.rowIdx === i ? props.shake : false}
-            animationStopped={props.animationStopped}
-            row={i}
-            key={i}
-          ></GameRow>
+          <GameRow row={i} key={i} animState={props.animState}></GameRow>
         ))}
       </div>
     </div>

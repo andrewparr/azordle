@@ -1,7 +1,7 @@
 import allowedWords from "./allowedWords";
 import candidateWords from "./candidateWords";
 import defaultState, { IGameState } from "./State";
-import defaultStats, { IGameStatistics } from "./GameStats";
+import defaultStats from "./GameStats";
 
 const LOCAL_STORAGE_STATE_NAME = "azordle-state";
 const LOCAL_STORAGE_STATS_NAME = "azordle-statistics";
@@ -33,16 +33,13 @@ const gameLogic = {
     return candidateWords.includes(word) || allowedWords.includes(word);
   },
 
-  evaluate: (word: string) => {
+  evaluate: (word: string, i: number) => {
     word = word.toLowerCase();
-    var ret = Array<string>();
     var solution = gameLogic.todaysWord();
-    if (word.length !== solution.length) return ret;
-    for (var i = 0; i < word.length; ++i)
-      if (word[i] === solution[i]) ret.push("correct");
-      else if (word[i] < solution[i]) ret.push("before");
-      else ret.push("after");
-    return ret;
+    if (word.length !== solution.length) return "";
+    if (word[i] === solution[i]) return "correct";
+    else if (word[i] < solution[i]) return "before";
+    else return "after";
   },
 
   loadState: () => {

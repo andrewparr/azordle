@@ -5,6 +5,7 @@ import Keyboard from "./Keyboard";
 import Overlay from "./Overlay";
 import styles from "./App.module.css";
 import defaultState, { IGameState } from "./State";
+import defaultAnimState, { IAnimationState } from "./AnimationState";
 import game from "./gameLogic";
 import { toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,19 +26,68 @@ export const GameState = React.createContext<IGameState>(defaultState);
 
 function App() {
   const [gameState, setGameState] = useState(defaultState);
+  const [animState, setAnimState] = useState<IAnimationState>(defaultAnimState);
 
   const [, setDark] = useState(false);
 
-  const [shake, setShake] = useState(false);
+  const [revealing, setRevaling] = useState(false);
 
   const [overlayState, setOverlayState] = useState({
     show: false,
     type: "instructions",
   });
 
-  function animationStopped() {
-    setShake(false);
-  }
+  const animationStopped = useCallback(
+    (e: React.AnimationEvent<HTMLDivElement>) => {
+      var guess = gameState.boardState[animState.row];
+      if (e.animationName === styles.PopIn) {
+        setAnimState({ ...animState, type: "" });
+      } else if (e.animationName === styles.Shake) {
+        setAnimState({ ...animState, type: "" });
+      } else if (e.animationName === styles.FlipIn) {
+        var evaluations = gameState.evaluations;
+        evaluations[animState.row].push(game.evaluate(guess, animState.col));
+        setGameState({ ...gameState, evaluations: evaluations });
+        game.saveState(gameState);
+        setAnimState({ ...animState, type: "flip-out" });
+      } else if (e.animationName === styles.FlipOut) {
+        if (animState.col < 4) {
+          setAnimState({
+            ...animState,
+            type: "flip-in",
+            col: animState.col + 1,
+          });
+        } else {
+          setRevaling(false);
+          if (guess === game.todaysWord().toUpperCase()) {
+            setGameState({ ...gameState, gameStatus: "WIN" });
+            var prev =
+              gameState.lastCompletedTs === null
+                ? 0
+                : game.tsToDayNum(gameState.lastCompletedTs);
+            var isStreak = game.dayNum() === prev + 1;
+            game.saveStats(true, isStreak, gameState.rowIdx + 1);
+            addToast(Awards[gameState.rowIdx], 1000);
+            setTimeout(function () {
+              showOverlay("statistics");
+            }, 1000);
+          } else {
+            if (gameState.rowIdx < gameState.boardState.length - 1) {
+              setGameState({ ...gameState, rowIdx: gameState.rowIdx + 1 });
+            } else {
+              setGameState({ ...gameState, gameStatus: "FAIL" });
+              game.saveStats(false, false, 7);
+              addToast(game.todaysWord().toUpperCase(), 1000);
+              setTimeout(function () {
+                showOverlay("statistics");
+              }, 1000);
+            }
+          }
+        }
+      }
+    },
+    [gameState, animState]
+  );
 
   function showOverlay(s: string) {
     setOverlayState({ show: true, type: s });
@@ -91,6 +141,7 @@ function App() {
   const processKey = useCallback(
     (e: string) => {
       if (gameState.gameStatus !== "IN_PROGRESS") return;
+      if (revealing) return;
       e = e.toUpperCase();
       var board = gameState.boardState;
       var guess = gameState.boardState[gameState.rowIdx];
@@ -100,36 +151,14 @@ function App() {
           setGameState({ ...gameState, boardState: board });
         }
       } else if (e === "ENTER" && guess.length === 5) {
+        if (animState.type !== "") return;
         if (!game.isValid(guess)) {
+          console.log("setting animState to shake");
+          setAnimState({ type: "shake", row: gameState.rowIdx, col: 0 });
           addToast("Not in word list", 1000);
-          setShake(true);
         } else {
-          var evaluations = gameState.evaluations;
-          evaluations[gameState.rowIdx] = game.evaluate(guess);
-          if (guess === game.todaysWord().toUpperCase()) {
-            setGameState({ ...gameState, gameStatus: "WIN" });
-            var prev =
-              gameState.lastCompletedTs === null
-                ? 0
-                : game.tsToDayNum(gameState.lastCompletedTs);
-            var isStreak = game.dayNum() === prev + 1;
-            game.saveStats(true, isStreak, gameState.rowIdx + 1);
-            addToast(Awards[gameState.rowIdx], 1000);
-            setTimeout(function () {
-              showOverlay("statistics");
-            }, 1000);
-          } else {
-            if (gameState.rowIdx < gameState.boardState.length - 1) {
-              setGameState({ ...gameState, rowIdx: gameState.rowIdx + 1 });
-            } else {
-              setGameState({ ...gameState, gameStatus: "FAIL" });
-              game.saveStats(false, false, 7);
-              addToast(game.todaysWord().toUpperCase(), 1000);
-              setTimeout(function () {
-                showOverlay("statistics");
-              }, 1000);
-            }
-          }
+          setRevaling(true);
+          setAnimState({ type: "flip-in", row: gameState.rowIdx, col: 0 });
         }
       } else if (e >= "A" && e <= "Z" && e.length === 1 && guess.length < 5) {
         if (gameState.hardMode) {
@@ -158,10 +187,16 @@ function App() {
           }
         }
         board[gameState.rowIdx] = board[gameState.rowIdx].concat(e);
+        var ncol = board[gameState.rowIdx].length - 1;
         setGameState({ ...gameState, boardState: board });
+        setAnimState({
+          type: "pop",
+          row: gameState.rowIdx,
+          col: ncol,
+        });
       }
     },
-    [gameState]
+    [gameState, animState, revealing]
   );
 
   useEffect(() => {
@@ -180,8 +215,13 @@ function App() {
     <GameState.Provider value={gameState}>
       <div className={styles.root}>
         <Header callback={showOverlay} />
-        <div className={styles.game}>
-          <Board shake={shake} animationStopped={animationStopped} />
+        <div
+          className={styles.game}
+          onAnimationEnd={(e: React.AnimationEvent<HTMLDivElement>) => {
+            animationStopped(e);
+          }}
+        >
+          <Board animState={animState} />
           <Keyboard processKey={processKey} />
         </div>
       </div>
