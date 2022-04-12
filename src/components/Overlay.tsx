@@ -1,10 +1,10 @@
 import React from "react";
-import close from "./close.svg";
+import close from "../svn/close.svg";
 import styles from "./Overlay.module.css";
 import Instructions from "./Instructions";
 import Statistics from "./Statistics";
 import Settings from "./Settings";
-import game from "./gameLogic";
+import game from "../library/gameLogic";
 
 interface Props {
   show: boolean;

@@ -1,7 +1,7 @@
 import React from "react";
 import GameRow from "./GameRow";
 import styles from "./App.module.css";
-import { IAnimationState } from "./AnimationState";
+import { IAnimationState } from "../library/AnimationState";
 
 interface Props {
   animState: IAnimationState;

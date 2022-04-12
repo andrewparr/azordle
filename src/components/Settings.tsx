@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import style from "./Settings.module.css";
-import game from "./gameLogic";
+import game from "../library/gameLogic";
 
 interface Props {
   setHardMode: any;

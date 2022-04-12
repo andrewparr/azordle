@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import styles from "./Statistics.module.css";
-import game from "./gameLogic";
-import share from "./share.svg";
+import game from "../library/gameLogic";
+import share from "../svn/share.svg";
 import CountdownTimer from "./CountdownTimer";
 import { toast } from "react-toastify";
 

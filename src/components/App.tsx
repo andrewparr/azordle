@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Header from "./Header";
-import Board from "./Board";
+import Header from "../components/Header";
+import Board from "../components/Board";
 import Keyboard from "./Keyboard";
 import Overlay from "./Overlay";
 import styles from "./App.module.css";
-import defaultState, { IGameState } from "./State";
-import defaultAnimState, { IAnimationState } from "./AnimationState";
-import game from "./gameLogic";
+import defaultState, { IGameState } from "../library/State";
+import defaultAnimState, { IAnimationState } from "../library/AnimationState";
+import game from "../library/gameLogic";
 import { toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { IGameStatistics } from "./GameStats";
+import { IGameStatistics } from "../library/GameStats";
 
 toast.configure();
 

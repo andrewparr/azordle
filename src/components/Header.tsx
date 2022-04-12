@@ -1,9 +1,9 @@
-import nav from "./nav.svg";
-import help from "./help.svg";
-import statistics from "./statistics.svg";
-import settings from "./settings.svg";
+import nav from "../svn/nav.svg";
+import help from "../svn/help.svg";
+import statistics from "../svn/statistics.svg";
+import settings from "../svn/settings.svg";
 import styles from "./Header.module.css";
-import gameLogic from "./gameLogic";
+import gameLogic from "../library/gameLogic";
 
 interface Props {
   callback: any;

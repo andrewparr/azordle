@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import GameTile from "./GameTile";
 import styles from "./App.module.css";
-import { IAnimationState } from "./AnimationState";
+import { IAnimationState } from "../library/AnimationState";
 
 import { GameState } from "./App";
 

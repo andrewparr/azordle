@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import { IAnimationState } from "./AnimationState";
+import { IAnimationState } from "../library/AnimationState";
 
 interface Props {
   evaluation?: string;
