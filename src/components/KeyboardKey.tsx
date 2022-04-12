@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./App.module.css";
-import del from "../svn/del.svg";
+import del from "../svg/del.svg";
 import gameLogic from "../library/gameLogic";
 
 import { GameState } from "./App";

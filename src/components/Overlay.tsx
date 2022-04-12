@@ -1,5 +1,5 @@
 import React from "react";
-import close from "../svn/close.svg";
+import close from "../svg/close.svg";
 import styles from "./Overlay.module.css";
 import Instructions from "./Instructions";
 import Statistics from "./Statistics";

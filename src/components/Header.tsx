@@ -1,7 +1,7 @@
-import nav from "../svn/nav.svg";
-import help from "../svn/help.svg";
-import statistics from "../svn/statistics.svg";
-import settings from "../svn/settings.svg";
+import nav from "../svg/nav.svg";
+import help from "../svg/help.svg";
+import statistics from "../svg/statistics.svg";
+import settings from "../svg/settings.svg";
 import styles from "./Header.module.css";
 import gameLogic from "../library/gameLogic";
 
