@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./App.module.css";
+import del from "./del.svg";
+import gameLogic from "./gameLogic";
 
 import { GameState } from "./App";
 
@@ -51,7 +53,17 @@ function KeyboardKey(props: Props) {
         props.onClick(props.letter);
       }}
     >
-      {props.letter}
+      {props.letter === "DEL" ? (
+        <img
+          style={
+            gameLogic.getDarkMode() ? { filter: "invert(100%)" } : undefined
+          }
+          src={del}
+          alt="del"
+        />
+      ) : (
+        props.letter
+      )}
     </button>
   );
 }
