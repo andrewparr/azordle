@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/azordle/static/css/main.ffd6bb78.css",
-    "main.js": "/azordle/static/js/main.ccd72d6a.js",
+    "main.js": "/azordle/static/js/main.d81bf704.js",
     "static/media/settings.svg": "/azordle/static/media/settings.c9debf64bec04b51f0dbb55e5611105c.svg",
     "index.html": "/azordle/index.html",
     "static/media/share.svg": "/azordle/static/media/share.e78f0ba2ffd1fbfc25bb57ab11cde5ad.svg",
     "static/media/help.svg": "/azordle/static/media/help.88d6f121c72fb2e5e0291b526e9643b6.svg",
+    "static/media/del.svg": "/azordle/static/media/del.0efb3079647d7412e222ffbe86888f6d.svg",
     "static/media/nav.svg": "/azordle/static/media/nav.1df72c34f1c198ca7ac64ff15107dccc.svg",
     "static/media/close.svg": "/azordle/static/media/close.8753eaf900f0f8cfbaa94edfe0ff06f4.svg",
     "static/media/statistics.svg": "/azordle/static/media/statistics.8738c79e51adc6ad5c6f9114a6368bc1.svg",
     "main.ffd6bb78.css.map": "/azordle/static/css/main.ffd6bb78.css.map",
-    "main.ccd72d6a.js.map": "/azordle/static/js/main.ccd72d6a.js.map"
+    "main.d81bf704.js.map": "/azordle/static/js/main.d81bf704.js.map"
   },
   "entrypoints": [
     "static/css/main.ffd6bb78.css",
-    "static/js/main.ccd72d6a.js"
+    "static/js/main.d81bf704.js"
   ]
 }
