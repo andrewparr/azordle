@@ -56,7 +56,11 @@ function KeyboardKey(props: Props) {
       {props.letter === "DEL" ? (
         <img
           style={
-            gameLogic.getDarkMode() ? { filter: "invert(100%)" } : undefined
+            gameLogic.getDarkMode() ||
+            context.boardState[context.rowIdx].length === 0 ||
+            context.gameStatus !== "IN_PROGRESS"
+              ? { filter: "invert(100%)" }
+              : undefined
           }
           src={del}
           alt="del"
