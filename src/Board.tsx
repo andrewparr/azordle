@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import GameRow from "./GameRow";
 import styles from "./App.module.css";
 import { IAnimationState } from "./AnimationState";
@@ -11,8 +11,6 @@ function Board(props: Props) {
   let height = window.innerHeight - (190 + 51 + 24);
   var w = Math.min(Math.floor(height * (5 / 6)), 350);
   var h = 6 * Math.floor(w / 5);
-
-  const boardRef = useRef<HTMLDivElement>(null);
 
   const [boardContainerStyle, setBoardContainerStyle] = React.useState({
     height: h + "px",
@@ -40,19 +38,16 @@ function Board(props: Props) {
       });
     }
 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [boardRef]);
+  }, []);
 
   return (
-    <div
-      className={styles.boardContainer}
-      ref={boardRef}
-      style={boardContainerStyle}
-    >
+    <div className={styles.boardContainer} style={boardContainerStyle}>
       <div className={styles.board} style={boardStyle}>
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <GameRow row={i} key={i} animState={props.animState}></GameRow>
