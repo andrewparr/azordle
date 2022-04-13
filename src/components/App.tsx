@@ -131,7 +131,10 @@ function App() {
       if (a2 !== null) a2.classList.add("colorblind");
     }
     var stats: IGameStatistics = game.loadStats();
-    if (stats.gamesPlayed === 0) showOverlay("instructions");
+    var state: IGameState = game.loadState();
+    if (stats.gamesPlayed === 0 && state.rowIdx === 0)
+      showOverlay("instructions");
+    else if (state.gameStatus !== "IN_PROGRESS") showOverlay("statistics");
   }, []);
 
   useEffect(() => {
