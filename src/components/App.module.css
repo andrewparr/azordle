@@ -246,7 +246,7 @@
 
 .tile[data-animation="flip-in"] {
   animation-name: FlipIn;
-  animation-duration: 250ms;
+  animation-duration: 200ms;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 }
@@ -262,7 +262,7 @@
 
 .tile[data-animation="flip-out"] {
   animation-name: FlipOut;
-  animation-duration: 250ms;
+  animation-duration: 200ms;
   animation-timing-function: ease-in;
 }
 
@@ -277,6 +277,6 @@
 
 .tile[data-animation="bounce"] {
   animation-name: Bounce;
-  animation-duration: 1000ms;
+  animation-duration: 800ms;
   animation-timing-function: ease-in-out;
 }

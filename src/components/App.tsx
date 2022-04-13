@@ -74,7 +74,7 @@ function App() {
                 type: "bounce",
                 col: -1,
               });
-            }, 1000);
+            }, 500);
             setTimeout(function () {
               showOverlay("statistics");
             }, 2400);
@@ -150,6 +150,11 @@ function App() {
 
   const processKey = useCallback(
     (e: string) => {
+      if (overlayState.show === true) {
+        if (e === "Enter") setOverlayState({ ...overlayState, show: false });
+        console.log(e);
+        return;
+      }
       if (gameState.gameStatus !== "IN_PROGRESS") return;
       if (revealing) return;
       e = e.toUpperCase();
@@ -206,7 +211,7 @@ function App() {
         });
       }
     },
-    [gameState, animState, revealing]
+    [gameState, animState, revealing, overlayState]
   );
 
   useEffect(() => {

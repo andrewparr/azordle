@@ -47,7 +47,7 @@ function GameTile(props: Props) {
       data-animation={animation}
       style={
         animation === "bounce"
-          ? { animationDelay: `${props.col * 200}ms` }
+          ? { animationDelay: `${props.col * 100}ms` }
           : undefined
       }
     >
