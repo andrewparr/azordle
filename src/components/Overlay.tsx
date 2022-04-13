@@ -4,6 +4,7 @@ import styles from "./Overlay.module.css";
 import Instructions from "./Instructions";
 import Statistics from "./Statistics";
 import Settings from "./Settings";
+import Menu from "./Menu";
 import game from "../library/gameLogic";
 
 interface Props {
@@ -18,7 +19,13 @@ function Overlay(props: Props) {
   return (
     <div
       className={styles.overlay}
-      style={props.show ? { display: "flex" } : undefined}
+      style={
+        props.show
+          ? props.type !== "nav"
+            ? { display: "flex" }
+            : { display: "block" }
+          : undefined
+      }
     >
       <div className={styles.content}>
         <slot>
@@ -30,6 +37,7 @@ function Overlay(props: Props) {
               setDarkMode={props.setDarkMode}
             />
           ) : undefined}
+          {props.type === "nav" ? <Menu /> : undefined}
         </slot>
         <div
           className={styles.closeIcon}

@@ -20,7 +20,7 @@ function Header(props: Props) {
           tabIndex={-1}
           onClick={(e) => {
             e.preventDefault();
-            // props.callback("nav");
+            props.callback("nav");
           }}
         >
           <img
