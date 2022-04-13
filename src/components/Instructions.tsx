@@ -12,7 +12,7 @@ function Instructions() {
         submit.
       </p>
       <p>
-        After each guess, the color of the tiles will change to show how close
+        After each guess, the colour of the tiles will change to show how close
         your guess was to the word.
       </p>
       <div className={styles.examples}>
