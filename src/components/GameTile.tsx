@@ -16,7 +16,7 @@ function GameTile(props: Props) {
   useEffect(() => {
     if (
       props.animState.row === props.row &&
-      props.animState.col === props.col
+      (props.animState.col === props.col || props.animState.col === -1)
     ) {
       if (props.animState.type === "pop") {
         setAnimation("pop");
@@ -24,6 +24,8 @@ function GameTile(props: Props) {
         if (animation !== "flip-in") setAnimation("flip-in");
       } else if (props.animState.type === "flip-out") {
         if (animation !== "flip-out") setAnimation("flip-out");
+      } else if (props.animState.type === "bounce") {
+        if (animation !== "bounce") setAnimation("bounce");
       } else {
         setAnimation("idle");
       }
@@ -43,6 +45,11 @@ function GameTile(props: Props) {
           : props.evaluation
       }
       data-animation={animation}
+      style={
+        animation === "bounce"
+          ? { animationDelay: `${props.col * 200}ms` }
+          : undefined
+      }
     >
       {props.letter}
     </div>

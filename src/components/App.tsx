@@ -69,8 +69,15 @@ function App() {
             game.saveStats(true, isStreak, gameState.rowIdx + 1);
             addToast(Awards[gameState.rowIdx], 1000);
             setTimeout(function () {
-              showOverlay("statistics");
+              setAnimState({
+                ...animState,
+                type: "bounce",
+                col: -1,
+              });
             }, 1000);
+            setTimeout(function () {
+              showOverlay("statistics");
+            }, 2400);
           } else {
             if (gameState.rowIdx < gameState.boardState.length - 1) {
               setGameState({ ...gameState, rowIdx: gameState.rowIdx + 1 });
