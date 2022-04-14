@@ -7,7 +7,7 @@ import styles from "./App.module.css";
 import defaultState, { IGameState } from "../library/State";
 import defaultAnimState, { IAnimationState } from "../library/AnimationState";
 import game from "../library/gameLogic";
-import { toast, Slide } from "react-toastify";
+import { toast, Zoom, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IGameStatistics } from "../library/GameStats";
 
@@ -28,7 +28,7 @@ function App() {
   const [gameState, setGameState] = useState(defaultState);
   const [animState, setAnimState] = useState<IAnimationState>(defaultAnimState);
 
-  const [, setDark] = useState(false);
+  const [dark, setDark] = useState(false);
 
   const [revealing, setRevaling] = useState(false);
 
@@ -36,6 +36,22 @@ function App() {
     show: false,
     type: "instructions",
   });
+
+  const addToast = useCallback(
+    (msg: string, duration: number) => {
+      var t = dark ? toast : toast.dark;
+      t(msg, {
+        toastId: "toastAvoidsDuplicates",
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: duration,
+        hideProgressBar: true,
+        draggable: false,
+        pauseOnHover: false,
+        transition: Zoom,
+      });
+    },
+    [dark]
+  );
 
   const animationStopped = useCallback(
     (e: React.AnimationEvent<HTMLDivElement>) => {
@@ -93,7 +109,7 @@ function App() {
         }
       }
     },
-    [gameState, animState]
+    [gameState, animState, addToast]
   );
 
   function showOverlay(s: string) {
@@ -114,16 +130,6 @@ function App() {
     // are inverted when the darkMode is enabled. Otherwise they don't update
     // until you close the Overlay.
     setDark(value);
-  }
-
-  function addToast(msg: string, duration: number) {
-    toast(msg, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: duration,
-      hideProgressBar: true,
-      pauseOnHover: false,
-      transition: Slide,
-    });
   }
 
   useEffect(() => {
@@ -211,7 +217,7 @@ function App() {
         });
       }
     },
-    [gameState, animState, revealing, overlayState]
+    [gameState, animState, revealing, overlayState, addToast]
   );
 
   useEffect(() => {
@@ -228,6 +234,7 @@ function App() {
 
   return (
     <GameState.Provider value={gameState}>
+      <ToastContainer limit={1} />
       <div className={styles.root}>
         <Header callback={showOverlay} />
         <div
