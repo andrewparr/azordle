@@ -8,10 +8,15 @@ interface Props {
 }
 
 function Settings(props: Props) {
+  const hardModeRef = useRef<HTMLDivElement>(null);
   const darkModeRef = useRef<HTMLDivElement>(null);
   const hcModeRef = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    if (game.loadState().hardMode && hardModeRef.current !== null) {
+      hardModeRef.current.setAttribute("checked", "");
+      hardModeRef.current.children[0].setAttribute("checked", "");
+    }
     if (game.getDarkMode() && darkModeRef.current !== null) {
       darkModeRef.current.setAttribute("checked", "");
       darkModeRef.current.children[0].setAttribute("checked", "");
@@ -77,6 +82,7 @@ function Settings(props: Props) {
             </div>
             <div className={style.control}>
               <div
+                ref={hardModeRef}
                 className={style.switch}
                 onClick={(e) => {
                   hardMode(e);
@@ -93,13 +99,12 @@ function Settings(props: Props) {
             <div className={style.control}>
               <div
                 ref={darkModeRef}
-                custom-attribute="checked"
                 className={style.switch}
                 onClick={(e) => {
                   darkMode(e);
                 }}
               >
-                <span custom-attribute="checked" className={style.knob}></span>
+                <span className={style.knob}></span>
               </div>
             </div>
           </div>
