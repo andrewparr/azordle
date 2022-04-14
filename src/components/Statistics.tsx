@@ -3,7 +3,7 @@ import styles from "./Statistics.module.css";
 import game from "../library/gameLogic";
 import share from "../svg/share.svg";
 import CountdownTimer from "./CountdownTimer";
-import { toast } from "react-toastify";
+import { toast, Zoom } from "react-toastify";
 
 function Statistics() {
   var stats = game.loadStats();
@@ -35,11 +35,15 @@ function Statistics() {
       clipboard.current.value = str;
       clipboard.current.select();
       const onCopy = (e: ClipboardEvent) => {
-        toast("Copied results to clipboard", {
+        var state = game.loadState();
+        var t = state.hardMode ? toast : toast.dark;
+        t("Copied results to clipboard", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1500,
           hideProgressBar: true,
           pauseOnHover: false,
+          draggable: false,
+          transition: Zoom,
         });
       };
       document.addEventListener("copy", onCopy);
