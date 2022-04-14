@@ -15,7 +15,7 @@ function Statistics() {
     var state = game.loadState();
     if (clipboard.current !== null) {
       var num = game.dayNum();
-      var str = "Azordle " + num + " " + stats.last_guess + "/6\n\n";
+      var str = "#Azordle " + num + " " + stats.last_guess + "/6\n\n";
       for (var r = 0; r < Math.min(stats.last_guess, 6); ++r) {
         for (var c = 0; c < 5; ++c) {
           switch (state.evaluations[r][c]) {

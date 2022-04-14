@@ -56,7 +56,7 @@ function Instructions() {
             The forth letter <strong>L</strong> is correct. The fifth letter{" "}
             <strong>O</strong> is after the actual letter. So the fifth letter
             in the word comes before <strong>O</strong> in the alphabet. Based
-            on this result, a second guess could be
+            on these hints a second guess could be
           </p>
           <div className={styles.row}>
             <div className={styles.tile} data-state="correct">
