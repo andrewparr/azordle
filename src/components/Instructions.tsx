@@ -43,7 +43,7 @@ function Instructions() {
           </div>
           <p>
             The first letter <strong>H</strong> is before the actual letter in
-            the alphabet. Thus the second letter in the word comes after{" "}
+            the alphabet. Thus the first letter in the word comes after{" "}
             <strong>H</strong> in the alphabet.
           </p>
           <p>
