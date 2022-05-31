@@ -158,7 +158,6 @@ function App() {
     (e: string) => {
       if (overlayState.show === true) {
         if (e === "Enter") setOverlayState({ ...overlayState, show: false });
-        console.log(e);
         return;
       }
       if (gameState.gameStatus !== "IN_PROGRESS") return;
@@ -174,7 +173,6 @@ function App() {
       } else if (e === "ENTER" && guess.length === 5) {
         if (animState.type !== "") return;
         if (!game.isValid(guess)) {
-          console.log("setting animState to shake");
           setAnimState({ type: "shake", row: gameState.rowIdx, col: 0 });
           addToast("Not in word list", 1000);
         } else {

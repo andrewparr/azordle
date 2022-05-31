@@ -8,7 +8,9 @@ interface Props {
 }
 
 function Board(props: Props) {
-  let height = window.innerHeight - (190 + 51 + 24);
+  const bodyTag = document.querySelector("body") as HTMLBodyElement;
+  var clientHeight = bodyTag.clientHeight;
+  let height = clientHeight - (190 + 51 + 24);
   var w = Math.min(Math.floor(height * (5 / 6)), 350);
   var h = 6 * Math.floor(w / 5);
 
@@ -23,12 +25,14 @@ function Board(props: Props) {
 
   React.useEffect(() => {
     function handleResize() {
-      let height2 = window.innerHeight - 260;
+      const bodyTag = document.querySelector("body") as HTMLBodyElement;
+      var clientHeight = bodyTag.clientHeight;
+      let height2 = clientHeight - 260;
       setBoardContainerStyle({
         height: height2 + "px",
       });
 
-      let height = window.innerHeight - 255;
+      let height = clientHeight - 255;
       var w = Math.min(Math.floor(height * (5 / 6)), 350);
       var h = 6 * Math.floor(w / 5);
 
