@@ -151,86 +151,92 @@ function Statistics() {
         </div>
       </div>
       <h1>Guess Distribution</h1>
-      <div id={styles.guessDistribution}>
-        <div className={styles.graphContainer}>
-          <div className={styles.guess}>1</div>
-          <div className={styles.graph}>
-            <div className={styles.graphBar} style={style1}>
-              <div className={styles.numGuesses}>{stats.guesses[1]}</div>
+      {stats.gamesPlayed === 0 ? (
+        <p>No Data</p>
+      ) : (
+        <React.Fragment>
+          <div id={styles.guessDistribution}>
+            <div className={styles.graphContainer}>
+              <div className={styles.guess}>1</div>
+              <div className={styles.graph}>
+                <div className={styles.graphBar} style={style1}>
+                  <div className={styles.numGuesses}>{stats.guesses[1]}</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.graphContainer}>
-          <div className={styles.guess}>2</div>
-          <div className={styles.graph}>
-            <div className={styles.graphBar} style={style2}>
-              <div className={styles.numGuesses}>{stats.guesses[2]}</div>
+            <div className={styles.graphContainer}>
+              <div className={styles.guess}>2</div>
+              <div className={styles.graph}>
+                <div className={styles.graphBar} style={style2}>
+                  <div className={styles.numGuesses}>{stats.guesses[2]}</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.graphContainer}>
-          <div className={styles.guess}>3</div>
-          <div className={styles.graph}>
-            <div className={styles.graphBar} style={style3}>
-              <div className={styles.numGuesses}>{stats.guesses[3]}</div>
+            <div className={styles.graphContainer}>
+              <div className={styles.guess}>3</div>
+              <div className={styles.graph}>
+                <div className={styles.graphBar} style={style3}>
+                  <div className={styles.numGuesses}>{stats.guesses[3]}</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.graphContainer}>
-          <div className={styles.guess}>4</div>
-          <div className={styles.graph}>
-            <div className={styles.graphBar} style={style4}>
-              <div className={styles.numGuesses}>{stats.guesses[4]}</div>
+            <div className={styles.graphContainer}>
+              <div className={styles.guess}>4</div>
+              <div className={styles.graph}>
+                <div className={styles.graphBar} style={style4}>
+                  <div className={styles.numGuesses}>{stats.guesses[4]}</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.graphContainer}>
-          <div className={styles.guess}>5</div>
-          <div className={styles.graph}>
-            <div className={styles.graphBar} style={style5}>
-              <div className={styles.numGuesses}>{stats.guesses[5]}</div>
+            <div className={styles.graphContainer}>
+              <div className={styles.guess}>5</div>
+              <div className={styles.graph}>
+                <div className={styles.graphBar} style={style5}>
+                  <div className={styles.numGuesses}>{stats.guesses[5]}</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className={styles.graphContainer}>
-          <div className={styles.guess}>6</div>
-          <div className={styles.graph}>
-            <div className={styles.graphBar} style={style6}>
-              <div className={styles.numGuesses}>{stats.guesses[6]}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.footer}>
-        <div className={styles.countdown}>
-          <h1>Next AZORDLE</h1>
-          <div id="timer">
-            <div className={styles.statisticContainer}>
-              <div className={styles.statisticTimer}>
-                <CountdownTimer />
+            <div className={styles.graphContainer}>
+              <div className={styles.guess}>6</div>
+              <div className={styles.graph}>
+                <div className={styles.graphBar} style={style6}>
+                  <div className={styles.numGuesses}>{stats.guesses[6]}</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className={styles.share}>
-          <button
-            className={styles.shareButton}
-            onClick={(e) => {
-              e.preventDefault();
-              onClick();
-            }}
-          >
-            Share
-            <img src={share} className={styles.gameIcon} alt="share" />
-          </button>
-        </div>
-      </div>
-      <textarea ref={clipboard} inputMode="none" className={styles.hide} />
+          <div className={styles.footer}>
+            <div className={styles.countdown}>
+              <h1>Next AZORDLE</h1>
+              <div id="timer">
+                <div className={styles.statisticContainer}>
+                  <div className={styles.statisticTimer}>
+                    <CountdownTimer />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.share}>
+              <button
+                className={styles.shareButton}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onClick();
+                }}
+              >
+                Share
+                <img src={share} className={styles.gameIcon} alt="share" />
+              </button>
+            </div>
+          </div>
+          <textarea ref={clipboard} inputMode="none" className={styles.hide} />
+        </React.Fragment>
+      )}
     </div>
   );
 }
