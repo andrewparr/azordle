@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/azordle/static/css/main.63d36767.css",
-    "main.js": "/azordle/static/js/main.363a97a1.js",
+    "main.js": "/azordle/static/js/main.e1e101d8.js",
     "static/media/settings.svg": "/azordle/static/media/settings.c9debf64bec04b51f0dbb55e5611105c.svg",
     "index.html": "/azordle/index.html",
     "static/media/share.svg": "/azordle/static/media/share.e78f0ba2ffd1fbfc25bb57ab11cde5ad.svg",
@@ -11,10 +11,10 @@
     "static/media/close.svg": "/azordle/static/media/close.8753eaf900f0f8cfbaa94edfe0ff06f4.svg",
     "static/media/statistics.svg": "/azordle/static/media/statistics.8738c79e51adc6ad5c6f9114a6368bc1.svg",
     "main.63d36767.css.map": "/azordle/static/css/main.63d36767.css.map",
-    "main.363a97a1.js.map": "/azordle/static/js/main.363a97a1.js.map"
+    "main.e1e101d8.js.map": "/azordle/static/js/main.e1e101d8.js.map"
   },
   "entrypoints": [
     "static/css/main.63d36767.css",
-    "static/js/main.363a97a1.js"
+    "static/js/main.e1e101d8.js"
   ]
 }
