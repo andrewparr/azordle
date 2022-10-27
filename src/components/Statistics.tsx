@@ -130,19 +130,19 @@ function Statistics() {
           <div className={styles.statistic}>{stats.gamesPlayed}</div>
           <div className={styles.label}>Played</div>
         </div>
-        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className={styles.statisticContainer}>
           <div className={styles.statistic}>{stats.winPercentage}</div>
           <div className={styles.label}>Win %</div>
         </div>
-        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className={styles.statisticContainer}>
           <div className={styles.statistic}>{stats.currentStreak}</div>
           <div className={styles.label}>
             Current <br /> Streak
           </div>
         </div>
-        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className={styles.statisticContainer}>
           <div className={styles.statistic}>{stats.maxStreak}</div>
           <div className={styles.label}>
