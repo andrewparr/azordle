@@ -5,6 +5,7 @@ import defaultStats from "./GameStats";
 
 const LOCAL_STORAGE_STATE_NAME = "azordle-state";
 const LOCAL_STORAGE_STATS_NAME = "azordle-statistics";
+const LOCAL_STORAGE_HARD_MODE_NAME = "azordle-hardmode";
 const LOCAL_STORAGE_DARK_MODE_NAME = "azordle-darkmode";
 const LOCAL_STORAGE_HC_MODE_NAME = "azordle-hcmode";
 
@@ -47,8 +48,10 @@ const gameLogic = {
     var state = str === null ? defaultState : JSON.parse(str);
     var now = new Date();
     var today = now.setHours(0, 0, 0, 0);
+    str = localStorage.getItem(LOCAL_STORAGE_HARD_MODE_NAME);
+    var hardMode = str === null ? false : JSON.parse(str);
     if (state.lastPlayedTs !== today) {
-      state = { ...defaultState, lastCompletedTs: state.lastCompletedTs };
+      state = { ...defaultState, lastCompletedTs: state.lastCompletedTs, hardMode : hardMode};
     }
     return state;
   },
@@ -61,6 +64,7 @@ const gameLogic = {
       state.lastCompletedTs = today;
     }
     localStorage.setItem(LOCAL_STORAGE_STATE_NAME, JSON.stringify(state));
+    localStorage.setItem(LOCAL_STORAGE_HARD_MODE_NAME, JSON.stringify(state.hardMode));
   },
 
   loadStats: () => {
